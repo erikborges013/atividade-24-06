@@ -1,115 +1,71 @@
-//Exercício 1) Validação de E-mail em Formulário de Cadastro
-const emailsCadastrados = ["erikborgesofficial@gmail.com", "erikbaraujo013@gmail.com"];
-const formulario = document.getElementById("form-cadastro-email");
-const feedback = document.getElementById("email-feedback");
+const inputNome = document.getElementById("nome");
+const inputDescricao = document.getElementById("descricao");
+const inputTags = document.getElementById("tags");
+const listaParaExibirTags = document.getElementById("lista-de-tags");
+const mensagemDoFormulario = document.getElementById("mensagem-form");
+const btnSalvar = document.getElementById("btn-salvar");
+const btnLimpar = document.getElementById("btn-limpar");
 
-async function verificarEmail(emailDigitado, emailsCadastrados) {
-    return new Promise((resolve, reject) => {
-        if (emailsCadastrados.includes(emailDigitado)) {
-            resolve("Login realizado com sucesso!");
-        } else {
-            reject("Email não cadastrado.")
-        }
-    })
-}
-    const inputEmail = document.getElementById("email");
-formulario.addEventListener("submit", async(evento) => {
-    evento.preventDefault();
-    const emailDigitado = inputEmail.value;
-    if (emailDigitado) {
-        try {
-            const login = await verificarEmail(emailDigitado, emailsCadastrados);
-            feedback.innerText = login;
-            inputEmail.value = "";
-        } catch (error) {
-            console.error("Erro ao realizar login. Tente novamente mais tarde.")
-            inputEmail.value = "";
-            feedback.innerText = "Email não encontrado!"
-        }
+
+
+inputTags.addEventListener("keypress", (evento) => {
+    
+    if (evento.key === "Enter") {
+        evento.preventDefault();
+        const tag = document.createElement("li");
+        tag.classList.add("tag");
+        const tagTexto = document.createElement("p");
+        tagTexto.innerText = inputTags.value;
+        tag.appendChild(tagTexto);
+        listaParaExibirTags.appendChild(tag);
+        inputTags.value = "";
     }
 })
+const listaProjetos = document.getElementById("lista-projetos");
 
-
-//Exercício 2) Validação de Nome de Usuário em Plataforma de Jogos
-const formularioNomeUsuario = document.getElementById("form-cadastro-usuario");
-const inputNomeUsuario = document.getElementById("username");
-const usuarioFeedbeck = document.getElementById("username-feedback");
-const usuariosCadastrados = ["Erik", "Jaine", "Amanda", "Fabiana"];
-
-async function verificarNomeDoUsuario(usuariosCadastrados, nomeDigitado) {
-    return new Promise((resolve, reject) => {
-        if (usuariosCadastrados.includes(nomeDigitado)) {
-            reject("Usuário não disponível. Escolha outro nome.");
-        } else {
-            resolve("Nome do usuário está disponível.");
-        }
-    })
-}
-
-formularioNomeUsuario.addEventListener("submit", async (evento) => {
+btnSalvar.addEventListener("click", async(evento) => {
     evento.preventDefault();
-    const nomeDigitado = inputNomeUsuario.value;
-    if (nomeDigitado) {
-        try {
-            const usuarioDisponivel = await verificarNomeDoUsuario(usuariosCadastrados, nomeDigitado);
-            usuarioFeedbeck.innerText = usuarioDisponivel;
-            inputNomeUsuario.value = "";
-            return;
-        } catch (error) {
-            console.error("Erro ao tentar buscar usuários:"+ error);
-            usuarioFeedbeck.innerText = error;
-            inputNomeUsuario.value = "";
-            return;
-        }
-        
+    const nome = inputNome.value;
+    const descricao = inputDescricao.value;
+    const tag = inputTags.value;
+    const quantidadeDeTags = listaParaExibirTags.querySelectorAll(".tag");
+    if (nome === "" || descricao === "" || quantidadeDeTags.length === 0 ) {
+        mensagemDoFormulario.textContent = "Por favor, preencha os campos corretamente.";
+        setTimeout(() => {
+            mensagemDoFormulario.innerText = "";
+        }, 2000);
+        return;
     }
-} )
-
-
-
-//Exercício 3) Capturando dados do formulário e simulando envio para o banco de dados
-const formularioExercicio3 = document.getElementById("form-projeto");
-const nomeExercicio3 = document.getElementById("projectName");
-const descricaoExercicio3 = document.getElementById("projectDescription");
-const tagsSeparadasPorVirgula = document.getElementById("projectTags");
-const botaoPublicarExercicio3 = document.getElementById("btn-publicar");
-const feedbackExercicio3 = document.getElementById("db-feedback");
-
-
-
-async function cadastrarProjeto(dados) {
-    return new Promise((resolve, reject) => {
-        if (dados) {
-            setTimeout(() => {
-                resolve("Projeto cadastrado com sucesso");
-            }, 2000);
-            
-        } else {
-            reject("Erro ao cadastrar projeto");
-        }
-    })
-}
-
-botaoPublicarExercicio3.addEventListener("click", async(evento) => {
-    evento.preventDefault();
-    const dados = {
-    nome: nomeExercicio3.value,
-    descricao: descricaoExercicio3.value,
-    tags: tagsSeparadasPorVirgula.value
-}
-    if (dados.nome && dados.descricao && dados.tags) {
-        try {
-            const resultado = await cadastrarProjeto(dados);
-            feedbackExercicio3.innerText = resultado;
-        } catch (error) {
-            feedbackExercicio3.innerText = error;
-        }
-        
-    } else {
-        feedbackExercicio3.innerText = "Por favor, preencha os campos corretamente."
+    btnSalvar.innerText = "Cadastrando..."
+    btnSalvar.disabled = true;
+    try {
+        setTimeout(() => {
+            listaProjetos.innerHTML = `<div class="projeto-card">
+                        <h4 id="titulo-projeto-publicado">${nome}</h4>
+                        <p id="descricao-projeto-publicado">${descricao}</p>
+                        <div class="tags-container">
+                            <span class="tag">html</span>
+                            <span class="tag">css</span>
+                        </div>
+                    </div>`
+                    quantidadeDeTags.forEach(doc => {
+                        const tagCriada = document.createElement("span");
+                        tagCriada.innerText = doc;
+                        const containerTags = document.querySelector(".tags-container");
+                        containerTags.appendChild(tagCriada);
+                    });
+            mensagemDoFormulario.innerText = "Cadastrado com sucesso!"
+        }, 2000);
+    } catch (error) {
+        console.error(error);
+    } finally {
+        btnSalvar.innerText = "Salvar Projeto";
+        btnSalvar.disabled = false;
+        inputNome.value = "";
+        inputDescricao.value = "";
+        inputTags.value = "";
+        listaParaExibirTags.innerHTML = "";
     }
+
 })
-//Exercício 4) Enviando feedback do usuário via formulário
 
-
-//Exercício 5) Simulando envio de formulário para um backend

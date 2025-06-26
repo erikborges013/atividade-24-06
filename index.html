@@ -1,88 +1,91 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios de Validação e Formulários</title>
+    <title>Exercícios Alura - Projetos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Desafios de Desenvolvimento Web</h1>
+        <header>
+            <h1>Painel de Gerenciamento de Projetos</h1>
+        </header>
 
-        <section id="exercicio1">
-            <h2>Exercício 1: Validação de E-mail</h2>
-            <form id="form-cadastro-email">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-                    <p id="email-feedback" class="feedback"></p>
-                </div>
-                <button type="submit">Cadastrar</button>
-            </form>
-        </section>
+        <main>
+            <section class="card">
+                <h2>Cadastrar Novo Projeto</h2>
+                <p>Use este formulário para adicionar um novo projeto. Todos os campos são obrigatórios.</p>
+                
+                <form id="projeto-form">
+                    <div class="form-group">
+                        <p id="mensagem-form"></p>
+                        <label for="nome">Nome do Projeto:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex: Portfólio com React">
+                    </div>
 
-        <section id="exercicio2">
-            <h2>Exercício 2: Validação de Nome de Usuário</h2>
-            <form id="form-cadastro-usuario">
-                <div class="form-group">
-                    <label for="username">Nome de Usuário:</label>
-                    <input type="text" id="username" name="username" placeholder="Escolha um nome de usuário" required>
-                    <p id="username-feedback" class="feedback"></p>
-                </div>
-                <button type="submit">Finalizar Cadastro</button>
-            </form>
-        </section>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva os objetivos e tecnologias do projeto."></textarea>
+                    </div>
 
-        <section id="exercicio3">
-            <h2>Exercício 3: Simular Envio para Banco de Dados</h2>
-            <form id="form-projeto">
-                <div class="form-group">
-                    <label for="projectName">Nome do Projeto:</label>
-                    <input type="text" id="projectName" name="projectName" required>
-                </div>
-                <div class="form-group">
-                    <label for="projectDescription">Descrição:</label>
-                    <textarea id="projectDescription" name="projectDescription" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="projectTags">Tags (separadas por vírgula):</label>
-                    <input type="text" id="projectTags" name="projectTags">
-                </div>
-                <button type="submit" id="btn-publicar">Publicar</button>
-                <p id="db-feedback" class="feedback"></p>
-            </form>
-        </section>
+                    <div class="form-group">
+                        <label for="tags">Tags: </label>
+                        <input type="text" id="tags" name="tags" placeholder="Ex: javascript, react, frontend">
+                    </div>
 
-        <section id="exercicio4">
-            <h2>Exercício 4: Enviar Feedback do Usuário</h2>
-            <form id="form-feedback">
-                <div class="form-group">
-                    <label for="userNameFeedback">Seu Nome:</label>
-                    <input type="text" id="userNameFeedback" name="userNameFeedback" required>
-                </div>
-                <div class="form-group">
-                    <label for="userEmailFeedback">Seu E-mail:</label>
-                    <input type="email" id="userEmailFeedback" name="userEmailFeedback" required>
-                </div>
-                <div class="form-group">
-                    <label for="feedbackMessage">Mensagem:</label>
-                    <textarea id="feedbackMessage" name="feedbackMessage" rows="5" required></textarea>
-                </div>
-                <button type="submit" id="btn-enviar-feedback">Enviar Feedback</button>
-                <p id="server-feedback" class="feedback"></p>
-            </form>
-        </section>
+                    <div class="exibir-tags" id="exibir-tags">
+                        <ul class="lista-de-tags" id="lista-de-tags">
 
-        <section id="exercicio5">
-            <h2>Exercício 5: Simulação Assíncrona com Promise</h2>
-            <p>Utilizaremos o formulário do Exercício 3 para disparar esta simulação.</p>
-            <button id="btn-simular-promise">Simular Envio (Promise)</button>
-            <p id="promise-feedback" class="feedback"></p>
-        </section>
+                        </ul>
+                    </div>
 
+                    <div class="form-actions">
+                        <button type="submit" id="btn-salvar">Salvar Projeto</button>
+                        <button type="button" id="btn-limpar" class="botao-limpar">Limpar Formulário</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Buscar Projetos</h2>
+                <div class="form-group">
+                    <label for="busca-tag">Buscar por Tag:</label>
+                    <input type="text" id="busca-tag" placeholder="Digite uma tag para filtrar...">
+                </div>
+            </section>
+
+            <section>
+                <h2>Projetos Publicados</h2>
+                <div id="lista-projetos">
+                    
+                    </div>
+            </section>
+
+            <section class="card">
+                <h2>Simulações (Exercícios 4 e 5)</h2>
+                
+                <div class="simulacao-group">
+                    <h3>Exercício 4: Detalhes de um Pedido</h3>
+                    <button id="btn-exibir-pedido">Processar Pedido</button>
+                    <div id="resultado-pedido" class="resultado-box">
+                        Clique no botão para ver o resultado...
+                    </div>
+                </div>
+
+                <div class="simulacao-group">
+                    <h3>Exercício 5: Dados da Biblioteca</h3>
+                    <button id="btn-ler-biblioteca">Ler Dados</button>
+                    <pre id="resultado-biblioteca" class="resultado-box">
+Clique no botão para ler os dados da biblioteca...
+                    </pre>
+                </div>
+            </section>
+        </main>
     </div>
-    <script defer src="script.js"></script>
-    </body>
+
+    <script src="script.js"></script>
+
+</body>
 </html>
