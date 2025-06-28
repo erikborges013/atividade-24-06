@@ -1,168 +1,202 @@
-/* Estilos Gerais e Reset */
+/* --- Variáveis de Cor e Fontes (fácil de customizar) --- */
+:root {
+    --cor-primaria: #005f73;
+    --cor-secundaria: #0a9396;
+    --cor-fundo: #f0f2f5;
+    --cor-fundo-card: #ffffff;
+    --cor-texto: #333333;
+    --cor-texto-claro: #ffffff;
+    --cor-borda: #dee2e6;
+    --cor-sombra: rgba(0, 0, 0, 0.1);
+    --cor-sucesso: #e9f5e9;
+    --cor-sucesso-borda: #a3d9a3;
+    --cor-erro: #f8d7da;
+    --cor-erro-borda: #f5c6cb;
+    --cor-botao-secundario: #6c757d;
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Reset e Estilos Gerais --- */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
     line-height: 1.6;
 }
 
-.container {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1rem;
-}
-
+/* --- Cabeçalho e Rodapé --- */
 header {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    padding: 2rem;
     text-align: center;
-    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px var(--cor-sombra);
 }
 
-h1 {
-    color: #0056b3;
-}
-
-h2 {
-    color: #333;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #eee;
-}
-
-h3 {
-    margin-bottom: 0.75rem;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-/* Estilo de Cartão para agrupar seções */
-.card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-}
-
-/* Estilos de Formulário */
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
+header h1 {
     margin-bottom: 0.5rem;
-    font-weight: bold;
 }
 
-input[type="text"],
-textarea {
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* --- Layout Principal dos Exercícios --- */
+.container-exercicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- Estilo Individual de Cada Card de Exercício --- */
+.exercicio {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 8px var(--cor-sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.exercicio:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--cor-sombra);
+}
+
+.exercicio h2 {
+    color: var(--cor-primaria);
+    margin-bottom: 0.5rem;
+    font-size: 1.4em;
+}
+
+.exercicio .descricao {
+    margin-bottom: 1.5rem;
+    color: #6c757d;
+    flex-grow: 1; 
+}
+
+/* --- Área de Inputs e Formulários --- */
+.input-area {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-area label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.input-area input[type="text"],
+.input-area textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--cor-borda);
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 1em;
+    font-family: var(--fonte-principal);
 }
 
-textarea {
-    resize: vertical;
+.input-area input[type="text"]:focus,
+.input-area textarea:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 2px rgba(10, 147, 150, 0.2);
 }
 
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
+/* --- Estilos específicos para o Exercício 3 --- */
+#imagem-preview {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--cor-borda);
 }
 
+input[type="file"] {
+    font-size: 0.9em;
+}
+
+/* --- Botões --- */
 button {
-    padding: 0.75rem 1.5rem;
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-size: 1rem;
+    font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--cor-primaria);
+}
+
+.botoes-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .botao-limpar {
-    background-color: #6c757d;
+    background-color: var(--cor-botao-secundario);
 }
 .botao-limpar:hover {
     background-color: #5a6268;
 }
 
-/* Estilos da Lista de Projetos */
-#lista-projetos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.projeto-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-}
-
-.projeto-card h4 {
-    margin-bottom: 0.5rem;
-    color: #007bff;
-}
-
-.tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.tag {
-    background-color: #e9ecef;
-    color: #495057;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-}
-
-
-/* Estilos das Simulações (Exercícios 4 e 5) */
-.simulacao-group {
+/* --- Área de Resultado --- */
+.resultado {
     margin-top: 1.5rem;
-}
-
-.resultado-box {
-    background-color: #e9ecef;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
     padding: 1rem;
-    margin-top: 1rem;
-    min-height: 50px;
-    font-family: 'Courier New', Courier, monospace;
+    border-radius: 4px;
+    min-height: 60px;
+    background-color: #e9ecef;
+    border-left: 5px solid #ced4da;
 }
 
-pre#resultado-biblioteca {
-    white-space: pre-wrap; /* Garante que o texto quebre a linha */
-    word-wrap: break-word;
+.resultado h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1em;
+    color: var(--cor-texto);
 }
 
-.exibir-tags {
-    height: 10vh;
+.resultado p, #resultado-2 div {
+    font-weight: bold;
+    color: var(--cor-primaria);
 }
 
-#mensagem-form {
-    color: red;
+/* Classes dinâmicas para o resultado */
+.resultado.sucesso {
+    background-color: var(--cor-sucesso);
+    border-left-color: var(--cor-sucesso-borda);
+}
+
+.resultado.erro {
+    background-color: var(--cor-erro);
+    border-left-color: var(--cor-erro-borda);
+}
+
+.resultado.erro p {
+    color: #721c24;
 }

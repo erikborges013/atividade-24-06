@@ -3,89 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercícios Alura - Projetos</title>
+    <title>Portfólio de Exercícios - [Seu Nome]</title>
     <link rel="stylesheet" href="style.css">
+    
+    <script src="script.js" defer></script>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Painel de Gerenciamento de Projetos</h1>
-        </header>
+    <header>
+        <h1>Minha Caixa de Ferramentas de Lógica</h1>
+        <p>Uma coleção de desafios de programação resolvidos.</p>
+    </header>
 
-        <main>
-            <section class="card">
-                <h2>Cadastrar Novo Projeto</h2>
-                <p>Use este formulário para adicionar um novo projeto. Todos os campos são obrigatórios.</p>
+    <main class="container-exercicios">
+
+        <article class="exercicio" id="exercicio-1">
+            <h2>Exercício 1: Validação de Projeto</h2>
+            <p class="descricao">Garantir que os campos 'nome', 'descrição' e ao menos uma 'tag' sejam preenchidos antes de liberar o projeto.</p>
+            <div class="input-area">
+                <label for="proj-nome">Nome do Projeto:</label>
+                <input type="text" id="proj-nome" placeholder="Ex: Meu novo site">
                 
-                <form id="projeto-form">
-                    <div class="form-group">
-                        <p id="mensagem-form"></p>
-                        <label for="nome">Nome do Projeto:</label>
-                        <input type="text" id="nome" name="nome" placeholder="Ex: Portfólio com React">
-                    </div>
+                <label for="proj-descricao">Descrição:</label>
+                <textarea id="proj-descricao" rows="3" placeholder="Fale sobre seu projeto"></textarea>
 
-                    <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva os objetivos e tecnologias do projeto."></textarea>
-                    </div>
+                <label for="proj-tags">Tags (separadas por vírgula):</label>
+                <input type="text" id="proj-tags" placeholder="Ex: html, css, javascript">
+            </div>
+            <button id="btn-validar">Liberar Projeto</button>
+            <div class="resultado">
+                <h3>Status:</h3>
+                <p id="resultado-1">Aguardando validação...</p>
+            </div>
+        </article>
 
-                    <div class="form-group">
-                        <label for="tags">Tags: </label>
-                        <input type="text" id="tags" name="tags" placeholder="Ex: javascript, react, frontend">
-                    </div>
-
-                    <div class="exibir-tags" id="exibir-tags">
-                        <ul class="lista-de-tags" id="lista-de-tags">
-
-                        </ul>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" id="btn-salvar">Salvar Projeto</button>
-                        <button type="button" id="btn-limpar" class="botao-limpar">Limpar Formulário</button>
-                    </div>
-                </form>
-            </section>
-
-            <section class="card">
-                <h2>Buscar Projetos</h2>
-                <div class="form-group">
-                    <label for="busca-tag">Buscar por Tag:</label>
-                    <input type="text" id="busca-tag" placeholder="Digite uma tag para filtrar...">
+        <article class="exercicio" id="exercicio-2">
+            <h2>Exercício 2: Radar de Tags</h2>
+            <p class="descricao">Desenvolver um radar que permita encontrar projetos específicos digitando uma tag para a busca.</p>
+            <div class="input-area">
+                <label for="busca-tag">Buscar por Tag:</label>
+                <input type="text" id="busca-tag" placeholder="Digite uma tag para buscar">
+            </div>
+            <button id="btn-buscar">Buscar</button>
+            <div class="resultado">
+                <h3>Projetos Encontrados:</h3>
+                <div id="resultado-2">
+                    <p>Faça uma busca para ver os resultados.</p>
                 </div>
-            </section>
+            </div>
+            <div id="banco-de-projetos" style="display: none;">
+                <div data-tags="html,css,portfolio">Projeto Alpha</div>
+                <div data-tags="javascript,api,node">Projeto Beta</div>
+                <div data-tags="python,django,web">Projeto Gamma</div>
+                <div data-tags="html,css,javascript">Projeto Delta</div>
+            </div>
+        </article>
 
-            <section>
-                <h2>Projetos Publicados</h2>
-                <div id="lista-projetos">
-                    
-                    </div>
-            </section>
-
-            <section class="card">
-                <h2>Simulações (Exercícios 4 e 5)</h2>
+        <article class="exercicio" id="exercicio-3">
+            <h2>Exercício 3: Limpar Formulário</h2>
+            <p class="descricao">Implementar um botão "Limpar" que restaura o formulário ao seu estado inicial, incluindo a imagem padrão.</p>
+            <form id="projeto-form">
+                <div class="input-area">
+                    <label for="nome">Nome do Projeto:</label>
+                    <input type="text" id="nome" name="nome" value="Projeto Exemplo">
+            
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="4">Esta é uma descrição de exemplo.</textarea>
+            
+                    <label for="imagem">Imagem do Projeto:</label>
+                    <input type="file" id="imagem" name="imagem">
+                    <img id="imagem-preview" src="https://via.placeholder.com/300x150.png?text=Imagem+Padrão" alt="Imagem do Projeto">
+            
+                    <label for="tags">Tags:</label>
+                    <input type="text" id="tags" name="tags" placeholder="Adicione tags separadas por vírgula">
+                </div>
                 
-                <div class="simulacao-group">
-                    <h3>Exercício 4: Detalhes de um Pedido</h3>
-                    <button id="btn-exibir-pedido">Processar Pedido</button>
-                    <div id="resultado-pedido" class="resultado-box">
-                        Clique no botão para ver o resultado...
-                    </div>
+                <div class="botoes-wrapper">
+                    <button type="submit" id="btn-salvar-proj">Salvar Projeto</button>
+                    <button type="button" id="btn-limpar-form" class="botao-limpar">Limpar</button>
                 </div>
+            </form>
+        </article>
 
-                <div class="simulacao-group">
-                    <h3>Exercício 5: Dados da Biblioteca</h3>
-                    <button id="btn-ler-biblioteca">Ler Dados</button>
-                    <pre id="resultado-biblioteca" class="resultado-box">
-Clique no botão para ler os dados da biblioteca...
-                    </pre>
-                </div>
-            </section>
-        </main>
-    </div>
+        <article class="exercicio" id="exercicio-4">
+            <h2>Exercício 4: Detalhes do Pedido</h2>
+            <p class="descricao">Processar um objeto "pedido" usando try...catch para tratar acessos a propriedades que possam não existir.</p>
+            <div class="botoes-wrapper">
+                <button id="btn-pedido-valido">Simular Pedido Válido</button>
+                <button id="btn-pedido-invalido" class="botao-limpar">Simular Pedido com Erro</button>
+            </div>
+            <div class="resultado">
+                <h3>Detalhes do Pedido:</h3>
+                <p id="resultado-4">Clique em um botão para processar um pedido.</p>
+            </div>
+        </article>
 
-    <script src="script.js"></script>
+        <article class="exercicio" id="exercicio-5">
+            <h2>Exercício 5: Leitura da Biblioteca</h2>
+            <p class="descricao">Ler dados de livros de um objeto, utilizando try...catch para capturar erros em dados malformados ou ausentes.</p>
+             <div class="botoes-wrapper">
+                <button id="btn-biblioteca-valida">Processar Biblioteca Completa</button>
+                <button id="btn-biblioteca-invalida" class="botao-limpar">Processar Biblioteca com Erros</button>
+            </div>
+            <div class="resultado">
+                <h3>Livros Processados:</h3>
+                <p id="resultado-5">Clique em um botão para processar a biblioteca.</p>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Seu Nome]. Construído como parte do meu portfólio de desenvolvimento.</p>
+    </footer>
 
 </body>
 </html>
