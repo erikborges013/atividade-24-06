@@ -1,8 +1,10 @@
 //Implementando tratamento de dados. Exercício 1
 let bancoDeDados = [];
-const btnLiberarProjeto = document.getElementById("btn-validar");
-const mensagemDeValidacao = document.getElementById("resultado-1");
 
+
+function validacaoDeDados() {
+    const btnLiberarProjeto = document.getElementById("btn-validar");
+    const mensagemDeValidacao = document.getElementById("resultado-1");
 btnLiberarProjeto.addEventListener("click", (evento) => {
     evento.preventDefault();
     const inputNomeDoProjeto = document.getElementById("proj-nome");
@@ -28,8 +30,12 @@ btnLiberarProjeto.addEventListener("click", (evento) => {
     }
     
 })
+}
+
 
 //Filtrar os projetos por tags. Exercício 2
+
+function filtrarProjetos() {
 const btnBuscarTagsFiltradas = document.getElementById("btn-buscar");
 const containerParaExibirProjetos = document.getElementById("resultado-2");
 
@@ -64,3 +70,20 @@ btnBuscarTagsFiltradas.addEventListener("click", (evento) => {
     document.getElementById("busca-tag").value = "";
     
 })
+}
+//Exercício 3) Limpando formulário
+function limparFormulario() {
+    const btnLimpar = document.getElementById("btn-limpar-form");
+    btnLimpar.addEventListener("click", (evento) => {
+        evento.preventDefault();
+        document.getElementById("nome").value = "";
+        document.getElementById("descricao").value = "";
+        document.getElementById("imagem").value = "";
+        document.getElementById("imagem-preview").src = "/assets/batata-frita.webp";
+        document.getElementById("tags").value = "";
+    })
+}
+
+validacaoDeDados();
+filtrarProjetos();
+limparFormulario();
