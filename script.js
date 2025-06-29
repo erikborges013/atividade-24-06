@@ -84,6 +84,46 @@ function limparFormulario() {
     })
 }
 
+//Exercício 4) Exibindo detalhes de um pedido
+const pedidoValido = {
+    id: 135,
+    nome: "Erik Borges",
+    itens: [
+        {nome: "pizza", quantidade: 1},
+        {nome: "Refrigrerante", quantidade: 2}
+    ],
+    total: 45.50
+}
+
+const pedidoInvalido = {
+    id: 432
+}
+
+let resultadoDoPedido = document.getElementById("resultado-4");
+
+function exibirDetalhesDoPedido(pedido) {
+    try {
+    let detalhes = `<strong>Numero do pedido: ${pedido.id}</strong><br>
+    <h2>Cliente: ${pedido.nome}</h2><br>
+    `;
+    pedido.itens.forEach(item => {
+        detalhes += `Itens: ${item.nome}, Quantidade: ${item.quantidade}<br>`;
+    });
+    detalhes += `Total: R$ ${pedido.total.toFixed(2)}`;
+    resultadoDoPedido.innerHTML = detalhes;
+    } catch (error) {
+        resultadoDoPedido.innerHTML = `<strong>Erro<strong>: <p>Falha ao exibir o pedido. Veja se os dados estão completos.</p>`
+    }
+}
+
+document.getElementById("btn-pedido-valido").addEventListener("click", (evento) => {
+    exibirDetalhesDoPedido(pedidoValido);
+});
+
+document.getElementById("btn-pedido-invalido").addEventListener("click", (evento) => {
+    exibirDetalhesDoPedido(pedidoInvalido);
+})
+
 validacaoDeDados();
 filtrarProjetos();
 limparFormulario();
